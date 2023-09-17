@@ -30,21 +30,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ukur Kaki</title>
+    <title>Edit database</title>
     <link rel="stylesheet" href="resource/main.css">
-
 </head>
 <body>
-    <h2>Ukur Kaki</h2>
-    <?php if ($message): ?>
-        <p><?php echo $message; ?></p>
-    <?php endif; ?>
-    <form action="ukur.php" method="post">
-        <label for="panjang">Panjang:</label>
-        <input type="number" step="0.01" name="panjang" required>
-        <label for="lebar">Lebar:</label>
-        <input type="number" step="0.01" name="lebar" required>
-        <button type="submit">Simpan</button>
-    </form>
+    <div class="container">
+        <h2>Ukur Kaki</h2>
+        <?php if ($message): ?>
+            <p><?php echo $message; ?></p>
+        <?php endif; ?>
+        <form action="ukur.php" method="post">
+            <label for="panjang">Panjang:</label>
+            <input type="number" step="0.01" name="panjang" required>
+            <label for="lebar">Lebar:</label>
+            <input type="number" step="0.01" name="lebar" required>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
+    </div>
 </body>
 </html>
