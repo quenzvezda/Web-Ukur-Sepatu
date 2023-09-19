@@ -13,12 +13,7 @@ include "includes/config.php";
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li><a href="../tampil.php">Beranda</a></li>
-            <li><a href="../operations/create.php">Tambah Stok</a></li>
-        </ul>
-    </nav>
+    <?php include 'includes/navbar.php'; ?>
     <div class="container">
         <h1>Daftar Stok Sepatu</h1>
         <form action="tampil.php" method="POST">
