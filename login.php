@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute([$username, $password]);
 
         if ($stmt->fetch()) {
-            header('Location: lihat_stok.php');
+            header('Location: tampil.php');
             exit();
         } else {
             $message = 'Username atau Password salah!';
