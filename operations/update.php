@@ -36,12 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li><a href="../tampil.php">Beranda</a></li>
-            <li><a href="create.php">Tambah Stok</a></li>
-        </ul>
-    </nav>
+    <?php include '../includes/navbar.php'; ?>
     <div class="container">
         <h1>Update Stok Sepatu</h1>
         <form action="update.php?id=<?php echo $id; ?>" method="post">
