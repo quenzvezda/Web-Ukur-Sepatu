@@ -1,17 +1,19 @@
 <?php
 include '../includes/config.php';
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $tipe = $_POST['tipe'];
         $merk = $_POST['merk'];
         $harga = $_POST['harga'];
-        $ukuran = $_POST['ukuran'];
         $jumlah_stok = $_POST['jumlah_stok'];
+        $ukuranDipilih = $_POST['ukuran']; // Ini akan menjadi array
 
-        $stmt = $conn->prepare("INSERT INTO stok (tipe, merk, harga, ukuran, jumlah_stok) VALUES (?, ?, ?, ?, ?)");
-        $stmt->execute([$tipe, $merk, $harga, $ukuran, $jumlah_stok]);
+        foreach ($ukuranDipilih as $ukuran) {
+            // Masukkan setiap entri ke dalam database
+            $stmt = $conn->prepare("INSERT INTO stok (tipe, merk, harga, ukuran, jumlah_stok) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$tipe, $merk, $harga, $ukuran, $jumlah_stok]);
+        }
 
         header("Location: ../tampil.php");
     } catch (PDOException $e) {
@@ -57,8 +59,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" id="hargaDisplay" placeholder="Rp0" oninput="formatCurrency(this)">
             <input type="hidden" name="harga" id="hargaActual"> <!-- input ini akan menyimpan harga dalam format integer -->
 
-            <label for="ukuran">Ukuran:</label>
-            <input type="number" step="0.1" name="ukuran" required>
+            <label>Ukuran:</label>
+            <?php
+            for ($i = 35; $i <= 43; $i++) {
+                echo "<input type='checkbox' name='ukuran[]' value='$i'> $i ";
+            }
+            ?>
 
             <label for="jumlah_stok">Jumlah Stok:</label>
             <input type="number" name="jumlah_stok" required>
