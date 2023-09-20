@@ -54,7 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select>
 
             <label for="harga">Harga:</label>
-            <input type="number" name="harga" required>
+            <input type="text" id="hargaDisplay" placeholder="Rp0" oninput="formatCurrency(this)">
+            <input type="hidden" name="harga" id="hargaActual"> <!-- input ini akan menyimpan harga dalam format integer -->
 
             <label for="ukuran">Ukuran:</label>
             <input type="number" step="0.1" name="ukuran" required>
@@ -66,6 +67,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
     <script>
+        function formatCurrency(inputElem) {
+            // Ambil nilai dari input dan hilangkan karakter non-angka
+            let rawValue = inputElem.value.replace(/[^0-9]/g, '');
+            
+            // Format sebagai mata uang
+            let formattedValue = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(rawValue);
+
+            // Setel nilai yang diformat ke input display
+            inputElem.value = formattedValue;
+            
+            // Setel nilai mentah ke input yang akan dikirim ke server
+            document.getElementById('hargaActual').value = rawValue;
+        }
+
         const merkDropdown = document.querySelector('#merk-dropdown');
         const tipeDropdown = document.querySelector('#tipe-dropdown');
 
