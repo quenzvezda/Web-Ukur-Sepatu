@@ -36,25 +36,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1>Tambah Stok Sepatu</h1>
         <form action="create.php" method="post">
 
-            <label for="merk">Merk Sepatu:</label>
-            <select name="merk" required>
-                <?php
-                $stmt = $conn->query("SELECT id, nama_merk FROM merk");
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<option value='" . $row['id'] . "'>" . $row['nama_merk'] . "</option>";
-                }
-                ?>
-            </select>
+        <label for="merk">Merk Sepatu:</label>
+        <select name="merk" id="merk-dropdown" required>
+            <option value="" disabled selected>Pilih Merk</option> <!-- Opsi default "Pilih Merk" -->
+            <?php
+            $stmt = $conn->query("SELECT id, nama_merk FROM merk");
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                echo "<option value='" . $row['id'] . "'>" . $row['nama_merk'] . "</option>";
+            }
+            ?>
+        </select>
 
-            <label for="tipe">Tipe Sepatu:</label>
-            <select name="tipe" required>
-                <?php
-                $stmt = $conn->query("SELECT id, nama_tipe FROM tipe");
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<option value='" . $row['id'] . "'>" . $row['nama_tipe'] . "</option>";
-                }
-                ?>
-            </select>
+        <label for="tipe">Tipe Sepatu:</label>
+        <select name="tipe" id="tipe-dropdown" disabled required> <!-- Dropdown "Tipe" awalnya dinonaktifkan -->
+            <option value="" disabled selected>Pilih Tipe</option> <!-- Opsi default "Pilih Tipe" -->
+            <!-- Daftar tipe akan diisi oleh kode JavaScript saat pengguna memilih merk -->
+        </select>
 
             <label for="harga">Harga:</label>
             <input type="number" name="harga" required>
@@ -69,14 +66,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
     <script>
-        document.querySelector('select[name="merk"]').addEventListener('change', function() {
+        const merkDropdown = document.querySelector('#merk-dropdown');
+        const tipeDropdown = document.querySelector('#tipe-dropdown');
+
+        merkDropdown.addEventListener('change', function() {
             let merkId = this.value;
 
-            fetch(`get_tipe_by_merk.php?merk_id=${merkId}`)
-                .then(response => response.text())
-                .then(data => {
-                    document.querySelector('select[name="tipe"]').innerHTML = data;
-                });
+            if (merkId) {
+                fetch(`get_tipe_by_merk.php?merk_id=${merkId}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        tipeDropdown.innerHTML = '<option value="" disabled selected>Pilih Tipe</option>' + data;
+                        tipeDropdown.disabled = false; // Aktifkan dropdown "Tipe"
+                    });
+            } else {
+                tipeDropdown.innerHTML = '<option value="" disabled selected>Pilih Tipe</option>';
+                tipeDropdown.disabled = true; // Nonaktifkan dropdown "Tipe"
+            }
         });
     </script>
 </body>
