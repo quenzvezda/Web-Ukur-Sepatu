@@ -36,37 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="../resource/main.css">
     <style>
-        /* CSS yang mirip dengan main.php */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-image: url('/resource/bg-main.jpg');
-            background-size: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        .login-container {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            width: 300px;
-        }
-
-        .login-container h2 {
-            text-align: center;
-        }
-
-        .login-container form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
         button, .back-button {
             padding: 10px 20px;
             font-size: 16px;
@@ -104,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-    <div class="login-container">
+    <div class="container">
         <h2>Login</h2>
         <?php if ($message): ?>
             <p class="error"><?php echo $message; ?></p>

@@ -87,13 +87,16 @@ $offset = ($page - 1) * $limit;
         </table>
         <div class="pagination">
             <?php
-            echo "<div class='pagination'>";
             if ($totalData > $limit) {
                 for ($i = 1; $i <= $totalPages; $i++) {
-                    echo "<a href='tampil.php?page=$i'>$i</a> ";
+                    // Cek apakah $i adalah halaman saat ini
+                    if($i == $page) {
+                        echo "<a href='tampil.php?page=$i' class='active'>$i</a> ";
+                    } else {
+                        echo "<a href='tampil.php?page=$i'>$i</a> ";
+                    }
                 }
-            }
-            echo "</div>";       
+            }     
             ?>
         </div>
     </div>
