@@ -85,15 +85,17 @@ $offset = ($page - 1) * $limit;
                 ?>
             </tbody>
         </table>
-        <?php
-        echo "<div class='pagination'>";
-        if ($totalData > $limit) {
-            for ($i = 1; $i <= $totalPages; $i++) {
-                echo "<a href='tampil.php?page=$i'>$i</a> ";
+        <div class="pagination">
+            <?php
+            echo "<div class='pagination'>";
+            if ($totalData > $limit) {
+                for ($i = 1; $i <= $totalPages; $i++) {
+                    echo "<a href='tampil.php?page=$i'>$i</a> ";
+                }
             }
-        }
-        echo "</div>";       
-        ?>
+            echo "</div>";       
+            ?>
+        </div>
     </div>
 </body>
 
