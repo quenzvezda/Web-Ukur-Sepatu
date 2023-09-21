@@ -75,7 +75,7 @@ $shoeSize = isset($panjang) ? getShoeSize($panjang) : null;
             <input type="number" step="0.01" name="panjang" required>
             <label for="lebar">Lebar:</label>
             <input type="number" step="0.01" name="lebar" required>
-            <button type="submit">Simpan</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
     </div>
     <div class="container">
