@@ -65,6 +65,7 @@ $shoeSize = isset($panjang) ? getShoeSize($panjang) : null;
     <link rel="stylesheet" href="resource/main.css">
 </head>
 <body>
+    <?php include 'includes/navbar-user.php'; ?>
     <div class="container">
         <h2>Ukur Kaki</h2>
         <?php if ($message): ?>
