@@ -32,7 +32,7 @@ $offset = ($page - 1) * $limit;
                 }
                 ?>
             </select>
-            <input type="submit" value="Cari">
+            <input type="submit" value="Cari" class="btn btn-primary">
         </form>
         <table class="table" border="1" cellspacing="0" cellpadding="10">
             <thead>
