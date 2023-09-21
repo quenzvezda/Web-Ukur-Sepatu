@@ -34,7 +34,7 @@ $offset = ($page - 1) * $limit;
             </select>
             <input type="submit" value="Cari">
         </form>
-        <table border="1" cellspacing="0" cellpadding="10">
+        <table class="table" border="1" cellspacing="0" cellpadding="10">
             <thead>
                 <tr>
                     <th>ID</th>
