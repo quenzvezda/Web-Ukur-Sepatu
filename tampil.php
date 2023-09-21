@@ -20,7 +20,7 @@ $offset = ($page - 1) * $limit;
 
 <body>
     <?php include 'includes/navbar.php'; ?>
-    <div class="container">
+    <div class="container container-tampil">
         <h1>Daftar Stok Sepatu</h1>
         <form action="tampil.php" method="POST">
             <select name="merk">

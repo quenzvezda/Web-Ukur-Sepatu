@@ -15,6 +15,16 @@ body {
   width: 300px;
 }
 
+.container-tampil {
+  width: 80%; /* Atur lebar sesuai keinginan Anda. 80% hanya contoh. */
+  max-width: 1200px; /* Contoh lebar maksimum jika Anda membutuhkannya */
+  overflow: auto; /* Untuk mengatasi konten yang mungkin melebihi batas container */
+}
+
+.container-login {
+  width: 300px;
+}
+
 h1,
 h2 {
   text-align: center;
