@@ -1,5 +1,11 @@
 <?php
 include "includes/config.php";
+
+$limit = 10; // jumlah data per halaman
+
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
 ?>
 
 <!DOCTYPE html>
@@ -43,11 +49,19 @@ include "includes/config.php";
             <tbody>
                 <?php
                 // Cek apakah user memilih merk dari dropdown
+
+                $totalData = $conn->query("SELECT COUNT(*) FROM stok")->fetchColumn();
+                $totalPages = ceil($totalData / $limit);
+
+
                 $merkFilter = isset($_POST['merk']) && $_POST['merk'] != "" ? "WHERE s.merk = " . $_POST['merk'] : "";
 
                 $stmt = $conn->prepare("SELECT s.id, t.nama_tipe, m.nama_merk, s.harga, s.ukuran, s.jumlah_stok FROM stok s 
-                                        JOIN tipe t ON s.tipe = t.id 
-                                        JOIN merk m ON s.merk = m.id " . $merkFilter);
+                        JOIN tipe t ON s.tipe = t.id 
+                        JOIN merk m ON s.merk = m.id 
+                        $merkFilter 
+                        LIMIT $limit OFFSET $offset");
+
                 $stmt->execute();
 
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -69,6 +83,13 @@ include "includes/config.php";
                 ?>
             </tbody>
         </table>
+        <?php
+        echo "<div class='pagination'>";
+        for ($i = 1; $i <= $totalPages; $i++) {
+            echo "<a href='tampil.php?page=$i'>$i</a> ";
+        }
+        echo "</div>";        
+        ?>
     </div>
 </body>
 
