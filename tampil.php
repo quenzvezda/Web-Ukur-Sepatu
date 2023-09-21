@@ -49,10 +49,12 @@ $offset = ($page - 1) * $limit;
             <tbody>
                 <?php
                 // Cek apakah user memilih merk dari dropdown
+                // Pindahkan definisi ini ke bagian atas
+                $merkFilter = isset($_POST['merk']) && $_POST['merk'] != "" ? "WHERE merk = " . $_POST['merk'] : "";
 
-                $totalData = $conn->query("SELECT COUNT(*) FROM stok")->fetchColumn();
+                // Kemudian, Anda dapat menggunakan $merkFilter dalam query Anda
+                $totalData = $conn->query("SELECT COUNT(*) FROM stok $merkFilter")->fetchColumn();
                 $totalPages = ceil($totalData / $limit);
-
 
                 $merkFilter = isset($_POST['merk']) && $_POST['merk'] != "" ? "WHERE s.merk = " . $_POST['merk'] : "";
 
@@ -85,10 +87,12 @@ $offset = ($page - 1) * $limit;
         </table>
         <?php
         echo "<div class='pagination'>";
-        for ($i = 1; $i <= $totalPages; $i++) {
-            echo "<a href='tampil.php?page=$i'>$i</a> ";
+        if ($totalData > $limit) {
+            for ($i = 1; $i <= $totalPages; $i++) {
+                echo "<a href='tampil.php?page=$i'>$i</a> ";
+            }
         }
-        echo "</div>";        
+        echo "</div>";       
         ?>
     </div>
 </body>
