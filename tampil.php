@@ -75,7 +75,8 @@ $offset = ($page - 1) * $limit;
                         <!-- <td><?php echo $row['id']; ?></td> -->
                         <td><?php echo $row['nama_merk']; ?></td>
                         <td><?php echo $row['nama_tipe']; ?></td>
-                        <td><?php echo $row['harga']; ?></td>
+                        <td>Rp<?php echo number_format($row['harga'], 0, ',', '.'); ?></td>
+
                         <td><?php echo $row['ukuran']; ?></td>
                         <td><?php echo $row['jumlah_stok']; ?></td>
                         <td>
