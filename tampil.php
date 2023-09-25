@@ -37,7 +37,7 @@ $offset = ($page - 1) * $limit;
         <table class="table" border="1" cellspacing="0" cellpadding="10">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>NO</th>
                     <th>Merk</th>
                     <th>Tipe</th>
                     <th>Harga</th>
@@ -66,10 +66,13 @@ $offset = ($page - 1) * $limit;
 
                 $stmt->execute();
 
+                $counter = ($page - 1) * $limit + 1;
+
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                     <tr>
-                        <td><?php echo $row['id']; ?></td>
+                        <td><?php echo $counter++; ?></td>
+                        <!-- <td><?php echo $row['id']; ?></td> -->
                         <td><?php echo $row['nama_merk']; ?></td>
                         <td><?php echo $row['nama_tipe']; ?></td>
                         <td><?php echo $row['harga']; ?></td>
