@@ -83,6 +83,7 @@ $shoeSize = isset($panjang) ? getShoeSize($panjang) : null;
         <h2>Ukuran Sepatu</h2>
         <?php if ($shoeSize): ?>
             <p>Ukuran sepatu yang disarankan: <?php echo $shoeSize; ?></p>
+            <a href="beli.php?size=<?php echo $shoeSize; ?>" class="btn btn-primary">Lihat Stok Sepatu</a>
         <?php endif; ?>
     </div>
 </body>
