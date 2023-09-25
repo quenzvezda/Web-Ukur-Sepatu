@@ -77,7 +77,7 @@ $offset = ($page - 1) * $limit;
                         <td><?php echo $row['jumlah_stok']; ?></td>
                         <td>
                             <a href="operations/update.php?id=<?php echo $row['id']; ?>">Edit</a> |
-                            <a href="delete.php?id=<?php echo $row['id']; ?>">Hapus</a>
+                            <a href="operations/delete.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
                         </td>
                     </tr>
                 <?php

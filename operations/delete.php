@@ -7,7 +7,7 @@ try {
     $stmt = $conn->prepare("DELETE FROM stok WHERE id=?");
     $stmt->execute([$id]);
 
-    header("Location: tampil.php");
+    header("Location: ../tampil.php");
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
