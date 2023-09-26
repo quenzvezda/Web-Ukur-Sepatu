@@ -33,7 +33,7 @@ if ($size) {
                 <div class="product-info">
                     <h3><?php echo $product['nama_tipe']; ?></h3>
                     <p>Merk: <?php echo $product['nama_merk']; ?></p>
-                    <p>Harga: <?php echo $product['harga']; ?></p>
+                    <p>Harga: Rp<?php echo number_format($product['harga'], 0, ',', '.'); ?></p>
                     <p>Sisa Stok: <?php echo $product['jumlah_stok']; ?></p>
                 </div>
             </div>
