@@ -218,8 +218,8 @@ for c in contours:
     x2c,y2c = conv(x2-(cx),y2-(cy))
     xlen = abs(x1c-x2c)
     ylen = abs(y1c-y2c)
-    print("{:.2f}".format(xlen))
-    print("{:.2f}".format(ylen))
+    # print(xlen)
+    # print(ylen)
         
     with open("captured_dimensions.txt", "w") as f:
         f.write(f"{xlen:.2f}\n")

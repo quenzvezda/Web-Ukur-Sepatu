@@ -60,7 +60,15 @@ $shoeSize = isset($panjang) ? getShoeSize($panjang) : null;
 
 if (isset($_POST['runPython'])) {
     $output = shell_exec('python python/main.py');
-    list($panjang, $lebar) = explode("\n", trim($output)); // memisahkan output menjadi dua variabel
+
+    // Baca dimensi dari file yang ditulis oleh skrip Python
+    if (file_exists('captured_dimensions.txt')) {
+        $dimensions = file('captured_dimensions.txt', FILE_IGNORE_NEW_LINES);
+        if (count($dimensions) >= 2) {
+            $panjang = $dimensions[0];
+            $lebar = $dimensions[1];
+        }
+    }
 }
 
 ?>
