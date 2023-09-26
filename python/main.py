@@ -76,13 +76,13 @@ cap = cv2.VideoCapture(camera_id)
 cap.set(3, camera_width)  # Set lebar kamera
 cap.set(4, camera_height)  # Set tinggi kamera
 
-time.sleep(2)
+time.sleep(5)
 
 ret, frame0 = cap.read()
 # Menampilkan gambar
-cv2.imshow('Captured Frame', frame0)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+# cv2.imshow('Captured Frame', frame0)
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
 
 width = camera_width
 height = camera_height
