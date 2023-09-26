@@ -78,10 +78,8 @@ $shoeSize = isset($panjang) ? getShoeSize($panjang) : null;
             <input type="number" step="0.01" name="lebar" required>
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
-    </div>
-    <div class="container">
-        <h2>Ukuran Sepatu</h2>
         <?php if ($shoeSize): ?>
+            <h2>Ukuran Sepatu</h2>
             <p>Ukuran sepatu yang disarankan: <?php echo $shoeSize; ?></p>
             <a href="beli.php?size=<?php echo $shoeSize; ?>" class="btn btn-primary">Lihat Stok Sepatu</a>
         <?php endif; ?>
