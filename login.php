@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $host = 'localhost';
     $db = 'sepatu';
     $user = 'root'; // Ganti dengan username database Anda
-    $pass = ''; // Ganti dengan password database Anda
+    $pass = 'root'; // Ganti dengan password database Anda
     $charset = 'utf8mb4';
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
