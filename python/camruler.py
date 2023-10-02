@@ -15,6 +15,12 @@ import cv2
 import frame_capture
 import frame_draw
 
+# import MySQL
+import MySQLdb as mdb
+
+db = mdb.connect('localhost', 'root', 'root', 'sepatu')
+cur = db.cursor()
+
 #-------------------------------
 # default settings
 #-------------------------------
@@ -118,7 +124,7 @@ pixel_base = 10
 
 # maximum field of view from center to farthest edge
 # should be measured in unit_suffix 
-cal_range = 85
+cal_range = 185
 
 # initial calibration values table {pixels:scale}
 # this is based on the frame size and the cal_range
@@ -196,8 +202,9 @@ def distance(x1,y1,x2,y2):
 #-------------------------------
 
 # define display frame
-framename = "TA"
+framename = "CamRuler ~ ClaytonDarwin's Youtube Channel"
 cv2.namedWindow(framename,flags=cv2.WINDOW_NORMAL|cv2.WINDOW_GUI_NORMAL)
+cv2.resizeWindow(framename, 500, 500)
 
 #-------------------------------
 # key events
@@ -571,7 +578,7 @@ while 1:
         frame1 = ~frame1
 
         # find contours on thresholded image
-        contours,nada = cv2.findContours(frame1,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+        hehe,contours,nada = cv2.findContours(frame1,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
         
         # small crosshairs (after getting frame1)
         draw.crosshairs(frame0,5,weight=2,color='green')    
@@ -607,16 +614,27 @@ while 1:
 
             # plot
             draw.rect(frame0,x1,y1,x2,y2,weight=2,color='red')
+            
+            #sql = "INSERT INTO buffer (panjang, lebar) VALUE (%s, %s)"
+            #args = (ylen, xlen)
+                
+            #cur.execute(sql, args)
+            #db.commit()
+            #print(cur.rowcount, "record inserted.")
+                
+            #if cur.rowcount == 1:
+             #   record_inserted = True
+              #  break
 
             # add dimensions
-            draw.add_text(frame0,f'{xlen:.2f}',x1-((x1-x2)/2),min(y1,y2)-8,center=True,color='red')
+            draw.add_text(frame0,f'{xlen:.2f}',x1-((x1-x2)/2),min(y1,y2)-8,center=True,color='blue')
             draw.add_text(frame0,f'Area: {carea:.2f}',x3,y2+8,center=True,top=True,color='red')
             if alen:
-                draw.add_text(frame0,f'Avg: {alen:.2f}',x3,y2+34,center=True,top=True,color='green')
+                draw.add_text(frame0,f'Avg: {alen:.2f}',x3,y2+34,center=True,top=True,color='red')
             if x1 < width-x2:
-                draw.add_text(frame0,f'{ylen:.2f}',x2+4,(y1+y2)/2,middle=True,color='red')
+                draw.add_text(frame0,f'{ylen:.2f}',x2+4,(y1+y2)/2,middle=True,color='blue')
             else:
-                draw.add_text(frame0,f'{ylen:.2f}',x1-4,(y1+y2)/2,middle=True,right=True,color='red')
+                draw.add_text(frame0,f'{ylen:.2f}',x1-4,(y1+y2)/2,middle=True,right=True,color='blue')
 
     #-------------------------------
     # dimension mode

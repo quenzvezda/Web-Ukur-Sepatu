@@ -103,7 +103,7 @@ pixel_base = 10
 
 # maximum field of view from center to farthest edge
 # should be measured in unit_suffix 
-cal_range = 85
+cal_range = 185
 
 # initial calibration values table {pixels:scale}
 # this is based on the frame size and the cal_range
@@ -192,7 +192,7 @@ frame1 = cv2.threshold(frame1,auto_threshold,255,cv2.THRESH_BINARY)[1]
 frame1 = ~frame1
 
 # find contours on thresholded image
-contours,nada = cv2.findContours(frame1,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)   
+_, contours, nada = cv2.findContours(frame1, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)   
 
 # loop over the contours
 for c in contours:
