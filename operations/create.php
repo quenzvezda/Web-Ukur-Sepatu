@@ -61,8 +61,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label>Ukuran:</label>
             <?php
-            for ($i = 35; $i <= 43; $i++) {
-                echo "<input type='checkbox' name='ukuran[]' value='$i'> $i ";
+            $sizes = [
+                '35' => 22.8,
+                '35.5' => 23.1,
+                '36' => 23.5,
+                '37' => 23.8,
+                '37.5' => 24.1,
+                '38' => 24.5,
+                '38.5' => 24.8,
+                '39' => 25.1,
+                '40' => 25.4,
+                '41' => 25.7,
+                '42' => 26,
+                '43' => 26.7,
+                '44' => 27.3,
+                '45' => 27.9,
+                '46.5' => 28.6,
+                '48.5' => 29.2
+            ];
+
+            foreach ($sizes as $size => $length) {
+                echo "<input type='checkbox' name='ukuran[]' value='$size'> $size ";
             }
             ?>
 
