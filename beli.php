@@ -6,10 +6,10 @@ $size = isset($_GET['size']) ? $_GET['size'] : null;
 $products = [];
 
 if ($size) {
-    $stmt = $conn->prepare("SELECT s.*, m.nama_merk, t.nama_tipe FROM stok s 
-                            JOIN merk m ON s.merk = m.id 
-                            JOIN tipe t ON s.tipe = t.id 
-                            WHERE s.ukuran = ?");
+    $stmt = $conn->prepare("SELECT s.*, m.nama_merk, t.nama_tipe, t.gambar FROM stok s 
+                        JOIN merk m ON s.merk = m.id 
+                        JOIN tipe t ON s.tipe = t.id 
+                        WHERE s.ukuran = ?");
     $stmt->execute([$size]);
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -29,7 +29,7 @@ if ($size) {
     <div class="products-container">
         <?php foreach ($products as $product): ?>
             <div class="product-card">
-                <img src="resource/template.jpg" alt="Sepatu" class="product-image">
+            <img src="uploads/<?php echo $product['gambar']; ?>" alt="Sepatu" class="product-image">
                 <div class="product-info">
                     <h3><?php echo $product['nama_tipe']; ?></h3>
                     <p>Merk: <?php echo $product['nama_merk']; ?></p>
